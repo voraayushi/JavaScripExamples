@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dynamic Calendar</title>
+	<script type="text/javascript">
+
+		var htmlcontent="";
+		var counter=1;
+		var febnumberdays="28";
+		// console.log("febnumberdays "+febnumberdays);
+		var datenow=new Date();
+		// console.log("datenow "+datenow);
+		var month=datenow.getMonth();
+		// console.log("month "+month);
+		var day=datenow.getDate();
+		// console.log("day "+day);
+		var year=datenow.getFullYear();
+		// console.log("year "+year);
+
+		var currmonth=datenow.getMonth();
+		var curryear=datenow.getFullYear();
+
+		var monthname=["January","February","March","April","May","June","July","August","September","October","November","December"];
+		var daynames=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+		var daypermonth=["31",""+febnumberdays+"","31","30","31","30","31","31","30","31","30","31"];
+		// console.log("daypermonth"+daypermonth);
+		var nextmonth=month+1;
+		// console.log("nextmonth "+nextmonth);
+		var prevmonth=month-1;
+		// console.log("prevmonth "+prevmonth);
+		
+		var nextdate= new Date(nextmonth + ' 1 ,'+year);
+		// console.log("nextdate "+nextdate);
+		var weekday=nextdate.getDay();
+		// console.log("weekday "+weekday);
+		var weekday2=weekday;
+		// console.log("weekday2 "+weekday2);
+		var numofday=daypermonth[month];
+		// console.log("numofday "+numofday);
+		
+		function loaddata(){
+			displaycalendar();
+		}
+		function nextmon(x){
+			// console.log("***nextmonth function called");
+			
+			month+=x;
+			if(month>11){
+				month=0;
+				year+=x;
+			}
+			if(month<0){
+				month=11;
+				year+=x;
+			}
+			// console.log("month c "+month);
+			
+			nextmonth=month+1;
+			// console.log("nextmonth "+nextmonth)
+			// prevmonth=month-1;
+			nextdate= new Date(nextmonth + ' 1 ,'+year);
+			weekday=nextdate.getDay();
+			// console.log("weekday "+weekday);
+			// console.log("nextdate "+nextdate);
+			weekday2=weekday;
+			// console.log("weekday2 "+weekday2);
+			numofday=daypermonth[month];
+			// console.log("numofday "+numofday);
+			// console.log(month);
+			counter=1;
+			htmlcontent="";
+			displaycalendar();
+		}
+		
+		
+		function displaycalendar(){
+
+			// // if(x=0)
+			// console.log("*****display method");
+			// console.log("weekday "+weekday);
+			// console.log("nextdate "+nextdate);
+			// console.log("weekday2 "+weekday2);
+			// console.log("numofday "+numofday);
+			// console.log("month "+month);
+			// console.log("while for weekday");
+			while(weekday>0){
+				// console.log("weekday"+ weekday);
+			htmlcontent+="<td class='monthpre'></td>";
+			weekday--;
+		}
+		// console.log("2nd while for counter");
+		// console.log("numofday "+numofday);
+		// console.log("counter "+counter);
+		while(counter<=numofday){
+			// console.log("counter "+counter);
+			if(weekday2>6){
+				weekday2=0;
+				htmlcontent+="<tr></tr>";
+			}
+			if((counter==day)&&(year==curryear)&&(month==currmonth)){
+				
+				 htmlcontent +=`<td class='daynow' id='${counter},${month},${year}' onclick="selecteddate(this)"><b>${counter}</b></td>`;
+			}
+			else{
+				htmlcontent+=`<td class='monthnow'id='${counter},${month},${year}' onclick='selecteddate(this)'>${counter}</td>`;
+			}
+			weekday2++;
+			counter++;
+		}
+		var calendarbody="<table class='calendar'><tr class='monthnow1'><th class='monthname' colspan='7'>"+monthname[month]+"  "+year+"</th></tr>";
+		calendarbody+="<tr class='daynames'> <td>Sun</td> <td>Mon</td> <td>Tue</td>"+" <td>Wed</td> <td>Thur</td> <td>Fri</td> <td>Sat</td></tr>";
+		calendarbody+="<tr class='contentb'>";
+		calendarbody+=htmlcontent;
+		calendarbody+="</tr></table>";
+		document.getElementById('calendar1').innerHTML=calendarbody;
+		}
+
+		function selecteddate(obj){
+			console.log(obj);
+			console.log(obj.id);
+			var x=obj.id;
+			var a=x.split(",")
+			// var x = document.getElementById("myBtn").getAttribute("id");
+			// console.log(x);
+			document.getElementById('displayy').innerHTML="Date Clicked is : "+a[0]+" "+monthname[a[1]]+" , "+a[2];
+		}
+	</script>
+
+<style type="text/css">
+.main{
+	width: 100%;
+	margin: 0px auto;
+	padding: 15px;
+	background-color: #000;
+}
+.calendar{
+	margin: 30px auto;
+	width: auto;
+	padding: 30px 15px;
+	background-color: #222;
+}
+.monthnow1{
+	/*font-size: 27px;*/
+	align-content: center;
+}
+.monthnow1 th{
+	
+	font-size: 25px;
+	color:#7FFFD3;
+	text-align: center;
+}
+.daynames{
+	color: #656565;
+	padding: 5px;
+	font-size: 20px;
+}
+.daynames td{
+	padding: 0 7px;
+}
+.monthnow{
+	font-size: 15px;
+	text-align: center;
+	color:#fff;
+}
+.daynow{
+	font-size: 16px;
+	text-align: center;
+	color: #7FFFD3;
+	
+}
+.contentb{
+	padding: 5 0;
+}
+td:hover{
+	font-size: 18px;
+}
+.pre{
+	color: #fff;
+	position: absolute;
+	top: 90px;
+	left: 515px;
+}
+.next{
+	color: #fff;
+	position: absolute;
+	top: 90px;
+	left: 800px;
+
+}
+.abc{
+	color: #fff;
+}
+</style>
+</head>
+<body onload="loaddata()">
+<div class="main">
+	<div id="calendar1">
+		
+	</div>
+	<div onclick="nextmon(-1)" class="pre">&#10094;</div>
+	<div onclick="nextmon(1)" class="next">&#10095;</div>
+
+	<div id='displayy' class="abc">
+		
+	</div>
+</div>
+
+</body>
+</html>

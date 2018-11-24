@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+	<script type="text/javascript">
+		function appenddata(obj){
+			
+			x=obj;
+			// console.log(x.value);
+			a=x.value;
+			// console.log(a);
+			var sibling = x.nextElementSibling;
+			// var sibling1 = x.nextElementSibling;
+			sibling.innerHTML=""
+			// console.log(sibling);
+			node = document.createTextNode(a);
+			// console.log(node);
+			sibling.appendChild(node);
+		}
+
+		function validateform(){
+			if(document.myform.fname.value==""){
+				// alert("please enter your name");
+				document.getElementById('sname').innerHTML="Please Enter Your Name";
+				document.myform.fname.focus();
+				return false;
+			}
+			if(document.myform.mobileno.value==""){
+				document.getElementById('mob').innerHTML="Please Enter Your Mobile Number";
+				document.myform.mobileno.focus();
+				return false;
+			}
+			if(document.myform.email.value==""){
+				document.getElementById('mail').innerHTML="Please Enter Your Email Id";
+				document.myform.email.focus();
+				return false;
+			}
+			if(document.myform.pwd.value==""){
+				document.getElementById('spwd').innerHTML="Please Enter Your Password";
+				document.myform.pwd.focus();
+				return false;
+			}
+			if(document.myform.cpwd.value==""){
+				document.getElementById('scpwd').innerHTML="Please Enter Your Password Again";
+				document.myform.cpwd.focus();
+				return false;
+			}
+			if((document.myform.m.checked==false)&&(document.myform.f.checked==false)){
+				document.getElementById('sgender').innerHTML=" Please Select Your Gender";
+				return false;
+				// document.myform.gen.focus();
+				
+			}
+			if(document.myform.mark.value==""){
+				document.getElementById('mrk').innerHTML="Please Enter Your Password Again";
+				document.myform.mark.focus();
+				return false;
+			}
+			// return(true);
+		}
+
+		function validatenumber(){}
+
+		function validatemobile(){
+			if(document.myform.mobile.length!=10){}
+		}
+	</script>
+</head>
+<body>
+	<div class="container">
+  		<h2>Form</h2>
+  		<form name="myform" onsubmit="return validateform()">
+    		<div class="form-group">
+      			<label for="name">Name:</label>
+      			<input type="text" class="form-control" id="name"  name="fname" onkeyup="appenddata(this)"><p id="sname"></p>
+    		</div>
+    		
+    		<div class="form-group">
+      			<label for="mobile">Mobile No:</label>
+      			<input type="number" class="form-control" id="mobile" name="mobileno" onkeyup="appenddata(this)"><span id="mob"></span>
+    		</div>
+    		
+    		<div class="form-group">
+      			<label for="email">Email:</label>
+      			<input type="email" class="form-control" id="email" name="email" onkeyup="appenddata(this)"><span id="mail"></span>
+    		</div>
+
+    		<div class="form-group">
+      			<label for="pwd">Password:</label>
+      			<input type="password" class="form-control" id="pwd" name="pswd" maxlength="8" onkeyup="appenddata(this)"><span id="spwd"></span>
+		    </div>
+    		
+    		<div class="form-group">
+      			<label for="pwd">Conform Password:</label>
+      			<input type="password" class="form-control" id="cpwd"  name="pswd" maxlength="10" onkeyup="appenddata(this)"><span id="scpwd"></span>
+		    </div>
+
+		    <div class="form-group" id="gen">
+		    	<label for="gender">Gender:</label>
+		    	<input type="radio" name="gender" id="m" value="Male">Male
+		    	<input type="radio" name="gender" id="f" value="Female"> Female <span id="sgender"></span>
+		    </div>
+
+		    <div class="form-group">
+      			<label for="marks">Marks:</label>
+      			<input type="number" class="form-control" id="mark" name="mark" min="1" max="100" onkeyup="appenddata(this)"><span id="mrk"></span>
+    		</div>
+
+    		
+    		<button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+  </form>
+</div>
+
+</body>
+</html>

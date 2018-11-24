@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Navigation Demo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<style type="text/css">
+
+		
+
+
+	</style>
+	
+</head>
+<body>
+<div class="slide-header" id="slidenav">
+	<ul>
+		<li><a href="JavaScript:void(0);" class="closebtn" id="closebutton" onclick="closenav()">&times;</a></li>
+		<li></li>
+		<li><a href="#" >About</a></li>
+		<li><a href="#" >Services</a></li>
+		<li><a href="#" >Clients</a></li>
+		<li><a href="#" >Contact Us</a></li>
+	</ul>
+</div>
+<div class="nav"><span class="nav-icon" style="cursor: pointer;" onclick="shownav()">&#9776;</span></div>
+<div id="main">
+	<div class="slideshow">
+		<div class="number-img">1</div>
+		<img src="images/img_8.jpg" class="slide-image">
+		<div class="txt">Colourfull scene</div>
+	</div>
+	<div class="slideshow">
+		<div class="number-img">2</div>
+		<img src="images/img_10.jpg" class="slide-image">
+		<div class="txt">Colourfull scene</div>
+	</div>
+	<div class="slideshow">
+		<div class="number-img">3</div>
+		<img src="images/img_2.jpg" class="slide-image">
+		<div class="txt">Colourfull scene</div>
+	</div>
+	<div class="slideshow">
+		<div class="number-img">4</div>
+		<img src="images/img_6.jpg" class="slide-image">
+		<div class="txt">Colourfull scene</div>
+	</div>
+	<div class="slideshow">
+		<div class="number-img">5</div>
+		<img src="images/img_9.jpg" class="slide-image">
+		<div class="txt">Colourfull scene</div>
+	</div>
+</div>
+<a href="#" class="prev" onclick="plusslide(-1)">&#10094;</a>
+<a href="#" class="next" onclick="plusslide(1)">&#10095;</a>
+<div style="text-align: center;"> 
+	<span class="dot" onclick="currentslide(1)"></span>
+	<span class="dot" onclick="currentslide(2)"></span>
+	<span class="dot" onclick="currentslide(3)"></span>
+	<span class="dot" onclick="currentslide(4)"></span>
+	<span class="dot" onclick="currentslide(5)"></span>
+	
+</div>
+<script type="text/javascript">
+	function shownav(){
+		document.getElementById('slidenav').style.width="200px";
+		document.getElementById('slidenav').style.height="100%";
+		document.getElementById('main').style.marginLeft="220px";
+	}
+
+	function closenav(){
+		document.getElementById('slidenav').style.width="0";
+		document.getElementById('main').style.marginLeft="0";
+	}
+	var slideindex=1;
+	var slide=document.getElementsByClassName("slideshow");
+	var dotss=document.getElementsByClassName("dot")
+	showslide(slideindex);
+	var i;
+	
+	function plusslide(n)
+	{
+		showslide(slideindex+=n);
+	}
+
+	function currentslide(n){
+		showslide(slideindex=n);
+	}
+	
+	function showslide(n){
+		
+		if(n>slide.length){
+			slideindex=1;
+		}
+		if(n<1){
+			slideindex=slide.length;
+		}
+		for(i=0;i<slide.length;i++)
+		{
+			slide[i].style.display="none";
+		}
+		for(i=0;i<dotss.length;i++){
+			dotss[i].className=dotss[i].className.replace("active","dot");
+		}
+		slide[slideindex-1].style.display="block";
+		dotss[slideindex-1].className+=" active";
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Charts</title>
+	<script type="text/javascript" src="Chart.min.js"></script>
+	
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="row">
+	<div class="container">
+			<!-- Bar Chart -->
+		<div class="row mb-4">
+			<div class="row">
+				<h1>
+					Bar Chart
+				</h1>
+			</div>
+			<div class="row">
+				<div class="col-12 p-5 m-5">
+					<canvas id="myChart" width="200px" height="50"></canvas>
+				</div>
+			</div>
+		</div>
+				<!-- Line Chart -->
+		<div class="row">
+			<div class="row">
+				<h1>
+					Line Chart
+				</h1>
+			</div>
+			<div class="row">
+				<div class="col-12 p-3 m-2">
+					<canvas id="linechart" width="200px" height="50px">
+						
+					</canvas>
+				</div>
+			</div>
+		</div>
+				<!-- Radar Chart -->
+		<div class="row m-5 p-5">
+			<div class="row">
+				<h1>
+					Radar Chart
+				</h1>
+			</div>
+			<div class="row mb-5">
+				<div class="col-12">
+					<canvas id="radarchart" width="200px" height="50px">
+						
+					</canvas>					
+				</div>
+			</div>
+		</div>
+				<!-- Pie Chart -->
+		<div class="row">
+			<div class="row m-3 p-2">
+				<h1>Pie Chart</h1>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<canvas id="piechart" width="200px" height="50px">
+						
+					</canvas>
+				</div>
+			</div>
+		</div>
+				<!-- Doughnut Chart -->
+		<div class="row">
+			<div class="row m-3 p-2">
+				<h1>Doughnut Chart</h1>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<canvas id="doughnutchart" width="200px" height="50px"></canvas>
+				</div>
+			</div>
+		</div>
+
+				<!--Polar Area  -->
+		<div class="row row m-3 p-2">
+			<div class="row">
+				<h1>Polar Area</h1>
+			</div>
+			<div class="row">
+				<canvas id="polarchart" width="200px" height="50px"></canvas>
+			</div>
+		</div>
+
+			<!-- Bubble Chart -->
+		<div class="row row m-3 p-2">
+			<div class="row">
+				<h1>Bubble Chart</h1>
+			</div>
+			<div class="row">
+				<canvas id="bubblechart" width="200px" height="50px"></canvas>
+			</div>
+		</div>
+
+			<!-- Scatter Chart -->
+		<div class="row row m-3 p-2">
+			<div class="row">
+				<h1>Scatter Chart</h1>
+			</div>
+			<div class="row">
+				<canvas id="scatterchart" width="200px" height="50px">
+					
+				</canvas>
+			</div>
+		</div>
+
+			<!--  -->
+		<div class="row">
+			
+		</div>
+
+	</div>
+</div>
+<script type="text/javascript">
+			// Bar Chart
+	var ctx=document.getElementById("myChart");
+	var myChart=new Chart(ctx,{
+		type: 'bar',
+		data:{
+			labels:["Red","Blue","Yellow","Green","Purple","Orange"],
+			datasets:[{
+				label:'# of Votes',
+				data:[12,19,3,5,10,3],
+				backgroundColor:[
+				'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'],
+                borderColor:[
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'],
+                borderWidth: 1
+			}]
+		},
+		options:{
+			scales:{
+				yAxes:[{
+					tricks:{
+						beginAtZero:true
+					}
+				}]
+			}
+		}
+	});
+
+		// Line Chart
+	var linec=document.getElementById("linechart");
+	var mylinechart= new Chart(linec,{
+		type:'line',
+		data:{
+			labels:["January","February","March","April","May","June","July"],
+			datasets:[{
+				label:'Prodution in 2018',
+				data:[65,59,80,81,56,55,40],
+				fill:false,
+				borderColor:"rgb(75,192,192)",
+				lineTension:0.1
+			}]
+		},
+		options:{}
+				});
+
+	// 	Radar Chart
+
+	 var radarc=document.getElementById('radarchart');
+	 var myradarchart=new Chart(radarc,{
+		type:'radar',
+		data:{
+			labels:["Coding","Designing","sleeping","Drinking","Eating","Running","Cycling"],
+			datasets:[{
+				label:"Radar Chart 1",
+				data:[56,60,80,45,90,76,66],
+				fill:true,
+				backgroundColor:"rgba(255,99,132,0.2)",
+				borderColor:"rgb(255,99,132)",
+				pointBackgroundColor:"rgb(255,99,132)",
+				pointBorderColor:"#fff"
+			},
+			{label:'Radar Chart 2',
+			data:[28,40,90,25,47,35,85],
+			fill:true,
+			backgroundColor:"rgba(54,162,235,0.2)",
+			borderColor:"rgb(54,162,235)",
+			pointBackgroundColor:"rgb(54,162,235)",
+			pointBorderColor:"#fff"
+		}]
+		},
+		options:{}
+	});
+
+	 	//Pie Chart
+	var piec=document.getElementById('piechart');
+	var mypiechart= new Chart(piec,{
+		type:'pie',
+		data:{
+			labels:["Red","Yellow","Blue","Green"],
+			datasets:[{
+				label:"Pie Chart 1",
+				data:[10,20,30,5],
+				fill:true,
+				backgroundColor:['red','yellow','blue','green']
+			}]
+		},
+		options:{}
+	});
+
+		//Doughnut Chart
+		var dough=document.getElementById('doughnutchart');
+		var mydoughchart= new Chart(dough,{
+			type:'doughnut',
+			data:{
+				labels:["Red","Yellow","Blue","Green"],
+				datasets:[{
+					label:' My Doughnut Chart',
+					data:[20,40,10,30],
+					fill:true,
+					backgroundColor:['red','yellow','blue','Green']
+				}]
+			},
+			options:{}
+		});
+
+			//Polar Chart
+		var polarc=document.getElementById('polarchart');
+		
+		var mypolarchart= new Chart(polarc,{
+			type:'polarArea',
+			data:{
+				labels:["Red","Green","Yellow","Grey","Blue"],
+				datasets:[{
+					label:'My Polar Chart',
+					data:[54,32,76,40,80],
+					fill:true,
+					backgroundColor:[
+					"rgb(255,99,132)","rgb(75,192,192)","rgb(255,205,86)","rgb(201,203,207)","rgb(54,162,235)"]
+
+				}]
+
+			},
+			options:{}
+		});
+
+			// Bubble Chart
+		var bubblec=document.getElementById('bubblechart');
+		var mybubblechart= new Chart(bubblec,{
+			type:'bubble',
+			data:{
+				// labels:"My Bubble Chart",
+				datasets:[{
+					label:'My Bubble Chart',
+					data:[{x:20,y:30,r:15},{x:30,y:20,r:12},{x:25,y:35,r:15}],
+					fill:true,
+					backgroundColor:"rgb(255,99,132)"
+				}]
+			},
+			options:{}
+
+		});
+
+			//	Scatter Chart
+		var scatterc=document.getElementById('scatterchart');
+		var myscatterchart =new Chart(scatterc,{
+			type:'scatter',
+			data:{
+				datasets:[{
+					label:'My Scatter Chart',
+					data:[{x:-20,y:-10},{x:-2,y:10},{x:5,y:15},{x:15,y:25},{x:25,y:10}],
+					fill:false,
+					borderColor:'rgb(75,192,192)',
+					pointBackgroundColor:'rgb(54,162,235)'
+				}]
+			},
+			options:
+			 {
+        		scales: {
+           			 xAxes: [{
+                		type: 'linear',
+                		position: 'bottom'
+            		}]
+       			 }
+    		}
+		})
+	
+</script>
+</body>
+</html>

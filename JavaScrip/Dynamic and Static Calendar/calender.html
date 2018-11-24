@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calender</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style type="text/css">
+		.mrg{
+			margin: 5px;
+		}
+	</style>
+	<script type="text/javascript">
+function displaycalander()
+{	
+		var htmlcontent="";
+		var febnumberofdays="";
+		var counter=1;
+		
+		var datenow=new Date();
+		var month=datenow.getMonth();
+		var day=datenow.getDate();
+		var year=datenow.getFullYear();
+		// console.log(htmlcontent);
+		// console.log(febnumberofdays);
+		// console.log(counter);
+		// console.log(datenow);
+		// console.log(month);
+		// console.log(day);
+		// console.log(year);
+
+		var nextmonth=month+1;
+		var prevmonth=month-1;
+
+		// console.log(nextmonth);
+		// console.log(prevmonth);
+
+		if(month==1)
+		{
+			if ((year%100!=0) && (year%4==0)||(year%400==0))
+			 {
+			 	febnumberofdays=29;
+			 }
+			 else{
+			 	febnumberofdays=28;
+			 }
+		}
+		console.log(febnumberofdays);
+
+		var monthname=["January","February","March","April","May","June","July","August","September","October","November","December"];
+		var daynames=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+		var daypermonth=["31",""+febnumberofdays+"","31","30","31","30","31","31","30","31","30","31"];
+
+		// console.log(monthname);
+		// console.log(daynames);
+		// console.log(daypermonth);
+
+		var nextdate= new Date(nextmonth + ' 1 ,'+year);
+		var weekday=nextdate.getDay();
+		var weekday2=weekday;
+		var numofday=daypermonth[month];
+
+		// console.log(nextdate);
+		// console.log(weekday);
+		// console.log(weekday2);
+		// console.log(numofday);
+
+		while(weekday>0){
+			htmlcontent+="<td class='monthpre'></td>";
+			weekday--;
+		}
+
+		while(counter<=numofday){
+			if(weekday2>6){
+				weekday2=0;
+				htmlcontent+="<tr></tr>";
+			}
+			if(counter==day){
+				
+				 htmlcontent +="<td class='daynow'><b>"+counter+"</b></td>";
+			}
+			else{
+				htmlcontent+="<td class='monthnow'>"+counter+"</td>";
+			}
+			weekday2++;
+			counter++;
+		}
+		var calendarbody="<table class='calendar'><tr class='monthnow1'><th class='monthname' colspan='7'>"+monthname[month]+"  "+year+"</th></tr>";
+		calendarbody+="<tr class='daynames'> <td>Sun</td> <td>Mon</td> <td>Tue</td>"+" <td>Wed</td> <td>Thur</td> <td>Fri</td> <td>Sat</td></tr>";
+		calendarbody+="<tr class='contentb'>";
+		calendarbody+=htmlcontent;
+		calendarbody+="</tr></table>";
+		document.getElementById('calendar1').innerHTML=calendarbody;
+
+}
+function todaydate(){
+	tdate= new Date();
+	todate=tdate.getDate();
+	tday=tdate.getDay();
+	tyear=tdate.getFullYear();
+	tmonth=tdate.getMonth();
+	var x="";
+	var months=["January","February","March","April","May","June","July","August","September","October","November","December"];
+	var weekday=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+	console.log(tdate);
+	console.log(todate);
+	console.log(tyear);
+	console.log(tday);
+	console.log(tmonth);
+	thour=tdate.getHours();
+	tmin=tdate.getMinutes();
+	tsec=tdate.getSeconds();
+	console.log(thour);
+	console.log(tmin);
+	console.log(tsec);
+	if(thour>=12){x="PM";}
+	else{x="AM";}
+	console.log(x);
+	document.getElementById('dayy').innerHTML="Today is : "+weekday[tday]+"  , "+todate+" "+months[tmonth]+" , "+tyear;
+	document.getElementById('timee').innerHTML="Current Time is : "+thour+" "+x+" : "+tmin+" : "+tsec;
+
+}
+</script>
+<style type="text/css">
+.main{
+	width: 100%;
+	margin: 0px auto;
+	padding: 15px;
+	background-color: #000;
+}
+.calendar{
+	margin: 30px auto;
+	width: auto;
+	padding: 30px 15px;
+	background-color: #222;
+}
+.monthnow1{
+	/*font-size: 27px;*/
+	align-content: center;
+}
+.monthnow1 th{
+	
+	font-size: 27px;
+	color:#7FFFD3;
+	text-align: center;
+}
+.daynames{
+	color: #656565;
+	padding: 5px;
+	font-size: 20px;
+}
+.daynames td{
+	padding: 0 7px;
+}
+.monthnow{
+	font-size: 15px;
+	text-align: center;
+	color:#fff;
+}
+.daynow{
+	font-size: 16px;
+	text-align: center;
+	color: #7FFFD3;
+	
+}
+.contentb{
+	padding: 5 0;
+}
+td:hover{
+	font-size: 18px;
+}
+.todayy{
+	color: #d1d1d1;
+	font-size: 17px;
+	margin: 20px;
+	padding-top: 30px;
+}
+</style>
+</head>
+<body onload="displaycalander(),todaydate()">
+<div class="main">
+	<div id="calendar1">
+		
+	</div>
+	<div class="todayy">
+		<div id="dayy">
+			
+		</div>
+		<div id="timee">
+			
+		</div>
+	</div>
+</div>
+<div>
+	
+</div>
+<div class="row">
+	<div class="container p-5 mt-5 mb-5">
+		<div class="row m-5">
+			<div class="col-3 col-md-2">
+			</div>
+			<div class="col-6 col-md-8">
+				<div class="row mrg">
+					<div class="col-md-2">
+						
+					</div>
+					<div class="col-md-9">
+						<h1 class="text-center bg-info text-light"> August  2018 </h1>
+					</div>
+					<div class="col-md-2">
+						
+					</div>
+				</div>
+				<div class="row mrg">
+					<div class="col-md-3 col-sm-3">
+					
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<h4>Mon</h4>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<h4>Tue</h4>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<h4>Wed</h4>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<h4>Thu</h4>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<h4>Fri</h4>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<h4>Sat</h4>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<h4>Sun</h4>
+					</div>
+					<div class="col-md-2 col-sm-2"></div>
+				</div>
+				<div class="row text-center mrg">
+					<div class="col-md-3 col-sm-3">
+					
+					</div>
+					<div class="col-md-1 col-sm-1">
+						
+					</div>
+					<div class="col-md-1 col-sm-1">
+						
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>1</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>2</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>3</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>4</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>5</span>
+					</div>
+					<div class="col-md-2 col-sm-2"></div>
+				</div>
+				<div class="row text-center mrg">
+					<div class="col-md-3 col-sm-3">
+						
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>6</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>7</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>8</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>9</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>10</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>11</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>12</span>
+					</div>
+					<div class="col-md-2 col-sm-2"></div>
+				</div>
+
+				<div class="row text-center mrg">
+					<div class="col-md-3 col-sm-3">
+						
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>13</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>14</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>15</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>16</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>17</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>18</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>19</span>
+					</div>
+					<div class="col-md-2 col-sm-2"></div>
+				</div>
+
+				<div class="row text-center mrg">
+					<div class="col-md-3 col-sm-3">
+						
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>20</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>21</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>22</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>23</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>24</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>25</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>26</span>
+					</div>
+					<div class="col-md-2 col-sm-2"></div>
+				</div>
+
+				<div class="row text-center mrg">
+					<div class="col-md-3 col-sm-3">
+						
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>27</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>28</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>29</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>30</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						<span>31</span>
+					</div>
+					<div class="col-md-1 col-sm-1">
+						
+					</div>
+					<div class="col-md-1 col-sm-1">
+						
+					</div>
+					<div class="col-md-2 col-sm-2"></div>
+				</div>
+			</div>
+			<div class="col-3 col-md-2">
+				
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+
+</body>
+</html>
